@@ -51,13 +51,16 @@ fetchRestaurantFromURL = (callback) => {
 fillRestaurantHTML = (restaurant = self.restaurant) => {
   const name = document.getElementById('restaurant-name');
   name.innerHTML = restaurant.name;
+  name.setAttribute('tabindex', 0);
 
   const address = document.getElementById('restaurant-address');
   address.innerHTML = restaurant.address;
+  address.setAttribute('tabindex', 0);
 
   const image = document.getElementById('restaurant-img');
-  image.className = 'restaurant-img'
+  image.className = 'restaurant-img';
   image.setAttribute('alt', restaurant.name);
+  image.setAttribute('tabindex', 0);
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
 
   const cuisine = document.getElementById('restaurant-cuisine');
@@ -81,10 +84,12 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
 
     const day = document.createElement('td');
     day.innerHTML = key;
+    day.setAttribute('tabindex', 0);
     row.appendChild(day);
 
     const time = document.createElement('td');
     time.innerHTML = operatingHours[key];
+    time.setAttribute('tabindex', 0);
     row.appendChild(time);
 
     hours.appendChild(row);
@@ -98,6 +103,7 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
   const container = document.getElementById('reviews-container');
   const title = document.createElement('h2');
   title.innerHTML = 'Reviews';
+  title.setAttribute('tabindex', 0);
   container.appendChild(title);
 
   if (!reviews) {
@@ -114,23 +120,27 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
 }
 
 /**
- * Create review HTML and add it to the webpage.
+ * Create review HTML and add it to the webpage. 
  */
 createReviewHTML = (review) => {
   const li = document.createElement('li');
   const name = document.createElement('h3');
   name.innerHTML = review.name;
+  name.setAttribute('tabindex', 0);
   li.appendChild(name);
 
   const date = document.createElement('h3');
   date.innerHTML = review.date;
+  date.setAttribute('tabindex', 0);
   li.appendChild(date);
 
-  const rating = document.createElement('p');
+  const rating = document.createElement('h4');
+  rating.setAttribute('tabindex', 0);
   rating.innerHTML = `Rating: ${review.rating}`;
   li.appendChild(rating);
 
   const comments = document.createElement('p');
+  comments.setAttribute('tabindex', 0);
   comments.innerHTML = review.comments;
   li.appendChild(comments);
 
